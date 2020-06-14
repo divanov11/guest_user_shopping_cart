@@ -1,0 +1,25 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+	<div class="col-lg-6">
+		<img style="border:1px solid #888" src="{{product.imageURL}}">
+	</div>
+
+	<div style="padding:50px" class="col-lg-6">
+
+		<h3>{{product.name}}</h3>
+		<hr>
+		
+		<form method="POST" action="{% url 'product' product.id %}">
+			{% csrf_token %}
+			<input min="1" value=1 type="number" name="quantity">
+			<input class="btn btn-dark" type="submit" value="Add to Cart">
+		</form>
+
+		<h2>Price: ${{product.price}}</h2>
+	</div>
+</div>
+
+{% endblock content %}
